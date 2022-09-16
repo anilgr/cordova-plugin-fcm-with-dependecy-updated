@@ -69,17 +69,20 @@ dependencies {
     // Load system enviroment defined values, or, if unavailable, plugin defaults
     def ANDROID_FCM_VERSION = System.getenv('ANDROID_FCM_VERSION') ?: '21.0.0'
     def ANDROID_FIREBASE_BOM_VERSION = System.getenv('ANDROID_FIREBASE_BOM_VERSION') ?: '26.0.0'
+    def ANDROID_FIREBASE_IID_VERSION = System.getenv('ANDROID_FIREBASE_IID_VERSION') ?: '21.0.0'
     try {
         // Load configuration from install variables (package.json) two directories above
         def PLUGIN_CONFIG = new groovy.json.JsonSlurper().parseText(file("${projectDir}/../../package.json").text).cordova.plugins['cordova-plugin-fcm-with-dependecy-updated']
         ANDROID_FCM_VERSION = PLUGIN_CONFIG.ANDROID_FCM_VERSION
         ANDROID_FIREBASE_BOM_VERSION = PLUGIN_CONFIG.ANDROID_FIREBASE_BOM_VERSION
+        ANDROID_FIREBASE_IID_VERSION = PLUGIN_CONFIG.ANDROID_FIREBASE_IID_VERSION
     } catch(Exception e0) {
         try {
             // Load configuration from install variables (package.json) three directories above
             def PLUGIN_CONFIG = new groovy.json.JsonSlurper().parseText(file("${projectDir}/../../../package.json").text).cordova.plugins['cordova-plugin-fcm-with-dependecy-updated']
             ANDROID_FCM_VERSION = PLUGIN_CONFIG.ANDROID_FCM_VERSION
             ANDROID_FIREBASE_BOM_VERSION = PLUGIN_CONFIG.ANDROID_FIREBASE_BOM_VERSION
+            ANDROID_FIREBASE_IID_VERSION = PLUGIN_CONFIG.ANDROID_FIREBASE_IID_VERSION
         } catch(Exception e1) {
             def WARNING_STYLE = "${(char)27}[33;49"+"m"
             def DEFAULT_STYLE = "${(char)27}[39;49"+"m"
@@ -89,6 +92,7 @@ dependencies {
     // Override config with project values if available
     ANDROID_FCM_VERSION = rootProject.hasProperty('ANDROID_FCM_VERSION') ? rootProject.ext.ANDROID_FCM_VERSION : ANDROID_FCM_VERSION
     ANDROID_FIREBASE_BOM_VERSION = rootProject.hasProperty('ANDROID_FIREBASE_BOM_VERSION') ? rootProject.ext.ANDROID_FIREBASE_BOM_VERSION : ANDROID_FIREBASE_BOM_VERSION
+    ANDROID_FIREBASE_IID_VERSION = rootProject.hasProperty('ANDROID_FIREBASE_IID_VERSION') ? rootProject.ext.ANDROID_FIREBASE_IID_VERSION : ANDROID_FIREBASE_IID_VERSION
     if (gradleNumberVersion < 3.4f) {
         def WARNING_STYLE = "${(char)27}[33;49"+"m"
         def DEFAULT_STYLE = "${(char)27}[39;49"+"m"
@@ -102,6 +106,7 @@ dependencies {
     } else {
         implementation platform("com.google.firebase:firebase-bom:${ANDROID_FIREBASE_BOM_VERSION}")
         implementation "com.google.firebase:firebase-messaging"
+        implementation "com.google.firebase:firebase-iid:${ANDROID_FIREBASE_IID_VERSION}"
     }
 }
 // apply plugin: 'com.google.gms.google-services'
