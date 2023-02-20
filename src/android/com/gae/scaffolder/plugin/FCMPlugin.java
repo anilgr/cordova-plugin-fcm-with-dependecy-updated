@@ -1,16 +1,25 @@
 package com.gae.scaffolder.plugin;
 
-import androidx.annotation.NonNull;
+import static android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS;
+
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.core.app.NotificationManagerCompat;
+import androidx.core.content.ContextCompat;
+
+import android.Manifest;
+import android.app.AlertDialog;
 import android.app.NotificationManager;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
+import android.os.Build;
 import android.text.TextUtils;
 import android.util.Log;
 
 import com.gae.scaffolder.plugin.interfaces.*;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.messaging.FirebaseMessaging;
 
 import org.apache.cordova.CallbackContext;
@@ -67,12 +76,56 @@ public class FCMPlugin extends CordovaPlugin {
     return instance;
   }
 
+  private ActivityResultLauncher<String> requestPermissionLauncher;
+
   public void initialize(CordovaInterface cordova, CordovaWebView webView) {
     super.initialize(cordova, webView);
     Log.d(TAG, "==> FCMPlugin initialize");
 
+    requestPermissionLauncher =
+    cordova.getActivity().registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
+      if (isGranted) {
+        // FCM SDK (and your app) can post notifications.
+        Log.d(TAG, "POST NOTIFICATION permission granted !");
+      } else {
+        Log.d(TAG, "POST NOTIFICATION permission not granted !");
+        this.showSettingDialog();
+      }
+    });
+
+    this.askNotificationPermission();
+
     FirebaseMessaging.getInstance().subscribeToTopic("android");
     FirebaseMessaging.getInstance().subscribeToTopic("all");
+  }
+
+  private void showSettingDialog() {
+    AlertDialog.Builder d = new AlertDialog.Builder(cordova.getActivity());
+    d.setTitle("Notification permission is required !")
+     .setIcon(android.R.drawable.stat_notify_chat)
+     .setPositiveButton("Go to settings", new DialogInterface.OnClickListener() {
+        @Override
+        public void onClick(DialogInterface dialogInterface, int i) {
+          Intent intent = new Intent(ACTION_APPLICATION_DETAILS_SETTINGS);
+          intent.setData(Uri.parse("package:" + getContext().getPackageName().toString()));
+          cordova.getActivity().startActivity(intent);
+        }
+      });
+    d.create().show();
+  }
+  private void askNotificationPermission() {
+    // This is only necessary for API level >= 33 (TIRAMISU)
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+      if (ContextCompat.checkSelfPermission(cordova.getContext(), Manifest.permission.POST_NOTIFICATIONS) ==
+              PackageManager.PERMISSION_GRANTED) {
+        Log.d(TAG, "POST NOTIFICATION permission already granted !");
+      } else {
+        Log.d(TAG, "POST NOTIFICATION permission will be request !");
+        // Directly ask for the permission
+        if (requestPermissionLauncher != null)
+        requestPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS);
+      }
+    }
   }
 
   public boolean execute(final String action, final JSONArray args, final CallbackContext callbackContext) throws JSONException {
