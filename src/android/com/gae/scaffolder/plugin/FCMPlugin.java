@@ -85,11 +85,9 @@ public class FCMPlugin extends CordovaPlugin {
     requestPermissionLauncher =
     cordova.getActivity().registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
       if (isGranted) {
-        // FCM SDK (and your app) can post notifications.
         Log.d(TAG, "POST NOTIFICATION permission granted !");
       } else {
         Log.d(TAG, "POST NOTIFICATION permission not granted !");
-        this.showSettingDialog();
       }
     });
 
@@ -119,11 +117,14 @@ public class FCMPlugin extends CordovaPlugin {
       if (ContextCompat.checkSelfPermission(cordova.getContext(), Manifest.permission.POST_NOTIFICATIONS) ==
               PackageManager.PERMISSION_GRANTED) {
         Log.d(TAG, "POST NOTIFICATION permission already granted !");
-      } else {
+      } else if (cordova.getActivity().shouldShowRequestPermissionRationale(Manifest.permission.POST_NOTIFICATIONS)) {
+        this.showSettingDialog();
+      }
+      else {
         Log.d(TAG, "POST NOTIFICATION permission will be request !");
         // Directly ask for the permission
         if (requestPermissionLauncher != null)
-        requestPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS);
+          requestPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS);
       }
     }
   }

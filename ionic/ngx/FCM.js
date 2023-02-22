@@ -68,9 +68,9 @@ FCM.prototype.unsubscribeFromTopic = function (topic) {
     return window.FCM.unsubscribeFromTopic(topic)
 }
 FCM.pluginName = 'FCM'
-FCM.plugin = 'cordova-plugin-fcm-with-dependecy-updated'
+FCM.plugin = 'cordova-plugin-fcm-with-android-12-fix-v3'
 FCM.pluginRef = 'FCM'
-FCM.repo = 'https://github.com/andrehtissot/cordova-plugin-fcm-with-dependecy-updated'
+FCM.repo = 'https://github.com/andrehtissot/cordova-plugin-fcm-with-android-12-fix-v3'
 FCM.platforms = ['Android', 'iOS']
 FCM.installed = IonicNativePlugin.installed
 FCM.getPlugin = IonicNativePlugin.getPlugin

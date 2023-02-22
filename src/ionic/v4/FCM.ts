@@ -13,9 +13,9 @@ declare namespace window {
 /** @copyFrom typings/FCMPlugin.d.ts FCMPlugin */
 @Plugin({
     pluginName: 'FCM',
-    plugin: 'cordova-plugin-fcm-with-dependecy-updated',
+    plugin: 'cordova-plugin-fcm-with-android-12-fix-v3',
     pluginRef: 'FCM',
-    repo: 'https://github.com/andrehtissot/cordova-plugin-fcm-with-dependecy-updated',
+    repo: 'https://github.com/andrehtissot/cordova-plugin-fcm-with-android-12-fix-v3',
     platforms: ['Android', 'iOS'],
 })
 @Injectable()

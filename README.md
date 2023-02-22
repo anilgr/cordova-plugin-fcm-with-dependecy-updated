@@ -2,17 +2,17 @@
 > Extremely easy plug&play push notification plugin for Cordova applications with Google Firebase FCM.
 
 [![Donate](https://img.shields.io/badge/Donate-Paypal-0a83fc.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=B33LA4QVUGVBW&source=url)
-[![npm downloads](https://img.shields.io/npm/dt/cordova-plugin-fcm-with-dependecy-updated.svg)](https://www.npmjs.com/package/cordova-plugin-fcm-with-dependecy-updated)
-[![npm per month](https://img.shields.io/npm/dm/cordova-plugin-fcm-with-dependecy-updated.svg)](https://www.npmjs.com/package/cordova-plugin-fcm-with-dependecy-updated)
-[![npm version](https://img.shields.io/npm/v/cordova-plugin-fcm-with-dependecy-updated.svg)](https://www.npmjs.com/package/cordova-plugin-fcm-with-dependecy-updated)
+[![npm downloads](https://img.shields.io/npm/dt/cordova-plugin-fcm-with-android-12-fix-v3.svg)](https://www.npmjs.com/package/cordova-plugin-fcm-with-android-12-fix-v3)
+[![npm per month](https://img.shields.io/npm/dm/cordova-plugin-fcm-with-android-12-fix-v3.svg)](https://www.npmjs.com/package/cordova-plugin-fcm-with-android-12-fix-v3)
+[![npm version](https://img.shields.io/npm/v/cordova-plugin-fcm-with-android-12-fix-v3.svg)](https://www.npmjs.com/package/cordova-plugin-fcm-with-android-12-fix-v3)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
-[![GitHub issues](https://img.shields.io/github/issues/andrehtissot/cordova-plugin-fcm-with-dependecy-updated.svg)](https://github.com/andrehtissot/cordova-plugin-fcm-with-dependecy-updated/issues)
-[![GitHub forks](https://img.shields.io/github/forks/andrehtissot/cordova-plugin-fcm-with-dependecy-updated.svg)](https://github.com/andrehtissot/cordova-plugin-fcm-with-dependecy-updated/network)
-[![GitHub stars](https://img.shields.io/github/stars/andrehtissot/cordova-plugin-fcm-with-dependecy-updated.svg)](https://github.com/andrehtissot/cordova-plugin-fcm-with-dependecy-updated/stargazers)
-[![Known Vulnerabilities](https://snyk.io/test/github/andrehtissot/cordova-plugin-fcm-with-dependecy-updated/badge.svg?targetFile=package.json)](https://snyk.io/test/github/andrehtissot/cordova-plugin-fcm-with-dependecy-updated?targetFile=package.json)
+[![GitHub issues](https://img.shields.io/github/issues/andrehtissot/cordova-plugin-fcm-with-android-12-fix-v3.svg)](https://github.com/andrehtissot/cordova-plugin-fcm-with-android-12-fix-v3/issues)
+[![GitHub forks](https://img.shields.io/github/forks/andrehtissot/cordova-plugin-fcm-with-android-12-fix-v3.svg)](https://github.com/andrehtissot/cordova-plugin-fcm-with-android-12-fix-v3/network)
+[![GitHub stars](https://img.shields.io/github/stars/andrehtissot/cordova-plugin-fcm-with-android-12-fix-v3.svg)](https://github.com/andrehtissot/cordova-plugin-fcm-with-android-12-fix-v3/stargazers)
+[![Known Vulnerabilities](https://snyk.io/test/github/andrehtissot/cordova-plugin-fcm-with-android-12-fix-v3/badge.svg?targetFile=package.json)](https://snyk.io/test/github/andrehtissot/cordova-plugin-fcm-with-android-12-fix-v3?targetFile=package.json)
 [![DeepScan grade](https://deepscan.io/api/teams/3417/projects/5068/branches/39495/badge/grade.svg)](https://deepscan.io/dashboard#view=project&tid=3417&pid=5068&bid=39495)
 
-[How it works](#how-it-works) | [Installation](#installation) | [Push Payload Configuration](#push-payload-configuration) |  [Features](#features) | [Example Apps](#example-apps) | [Companion Plugins](#companion-plugins) | [Changelog](https://github.com/andrehtissot/cordova-plugin-fcm-with-dependecy-updated/blob/master/CHANGELOG.md) | [Authorship](#authorship)
+[How it works](#how-it-works) | [Installation](#installation) | [Push Payload Configuration](#push-payload-configuration) |  [Features](#features) | [Example Apps](#example-apps) | [Companion Plugins](#companion-plugins) | [Changelog](https://github.com/andrehtissot/cordova-plugin-fcm-with-android-12-fix-v3/blob/master/CHANGELOG.md) | [Authorship](#authorship)
 
 ## How it works
 Send a push notification to a single device or topic.
@@ -27,7 +27,7 @@ Send a push notification to a single device or topic.
   - The device displays the notification message in the device notification bar.
   - If the user taps the notification, the application comes to foreground and the notification data is received in the JavaScript callback.
   - If the user does not tap the notification but opens the application, nothing happens until the notification is tapped.
-  
+
 ### Push Notifications on iOS
 
 On Android, push notifications don't require any special permission and can be tested from emulators freely.
@@ -61,7 +61,7 @@ Default preferences:
 ```sh
 npm install -g cordova@latest # Version 9 or higher required
 npm uninstall @ionic-native/fcm # Ionic support is included and conflicts with @ionic-native's implementation.
-cordova plugin add cordova-plugin-fcm-with-dependecy-updated
+cordova plugin add cordova-plugin-fcm-with-android-12-fix-v3
 ```
 
 Complete:
@@ -69,7 +69,7 @@ Complete:
 ```sh
 npm install -g cordova@latest # Version 9 or higher required
 npm uninstall @ionic-native/fcm # Ionic support is included and conflicts with @ionic-native's implementation.
-cordova plugin add cordova-plugin-fcm-with-dependecy-updated \
+cordova plugin add cordova-plugin-fcm-with-android-12-fix-v3 \
   --variable ANDROID_DEFAULT_NOTIFICATION_ICON="@mipmap/ic_launcher" \
   --variable ANDROID_FIREBASE_BOM_VERSION="26.0.0" \
   --variable ANDROID_GOOGLE_SERVICES_VERSION="4.3.4" \
@@ -84,7 +84,7 @@ Default preferences:
 ```sh
 npm install -g cordova@latest # Version 9 or higher required
 npm uninstall @ionic-native/fcm # Ionic support is included and conflicts with @ionic-native's implementation.
-ionic cordova plugin add cordova-plugin-fcm-with-dependecy-updated
+ionic cordova plugin add cordova-plugin-fcm-with-android-12-fix-v3
 ```
 
 Complete:
@@ -92,7 +92,7 @@ Complete:
 ```sh
 npm install -g cordova@latest # Version 9 or higher required
 npm uninstall @ionic-native/fcm # Ionic support is included and conflicts with @ionic-native's implementation.
-ionic cordova plugin add cordova-plugin-fcm-with-dependecy-updated \
+ionic cordova plugin add cordova-plugin-fcm-with-android-12-fix-v3 \
   --variable ANDROID_DEFAULT_NOTIFICATION_ICON="@mipmap/ic_launcher" \
   --variable ANDROID_FIREBASE_BOM_VERSION="26.0.0" \
   --variable ANDROID_GOOGLE_SERVICES_VERSION="4.3.4" \
@@ -306,15 +306,15 @@ FCM.eventTarget.removeEventListener("notification", listener, false);
 Ionic support was implemented as part of this plugin to allow users to have access to newer features with the type support. It is available in 3 flavors:
 - Ionic v5:
 ```typescript
-import { FCM } from "cordova-plugin-fcm-with-dependecy-updated/ionic";
+import { FCM } from "cordova-plugin-fcm-with-android-12-fix-v3/ionic";
 ```
 - Ionic ngx:
 ```typescript
-import { FCM } from "cordova-plugin-fcm-with-dependecy-updated/ionic/ngx";
+import { FCM } from "cordova-plugin-fcm-with-android-12-fix-v3/ionic/ngx";
 ```
 - Ionic v4 (also works for Ionic v3):
 ```typescript
-import { FCM } from "cordova-plugin-fcm-with-dependecy-updated/ionic/v4";
+import { FCM } from "cordova-plugin-fcm-with-android-12-fix-v3/ionic/v4";
 ```
 
 It brings the same behavior as the native implementation, except for `FCM.onNotification()` and `FCM.onTokenRefresh()`, which gain rxjs' Observable support.
@@ -343,15 +343,15 @@ this.fcm.onTokenRefresh().subscribe((token: string) => {
 
 ### Cordova
 
-https://github.com/andrehtissot/cordova-plugin-fcm-with-dependecy-updated-app-example
+https://github.com/andrehtissot/cordova-plugin-fcm-with-android-12-fix-v3-app-example
 
 ### Ionic v3
 
-https://github.com/andrehtissot/cordova-plugin-fcm-with-dependecy-updated-ionic-v3-example
+https://github.com/andrehtissot/cordova-plugin-fcm-with-android-12-fix-v3-ionic-v3-example
 
 ### Ionic v5
 
-https://github.com/andrehtissot/cordova-plugin-fcm-with-dependecy-updated-ionic-v5-example
+https://github.com/andrehtissot/cordova-plugin-fcm-with-android-12-fix-v3-ionic-v5-example
 
 ## Companion Plugins
 
@@ -359,7 +359,7 @@ https://github.com/andrehtissot/cordova-plugin-fcm-with-dependecy-updated-ionic-
 
 After a lot of work, the first release of the plugin is out. Which should enable the support, just by installing it.
 
-Link: https://github.com/andrehtissot/cordova-plugin-fcm-image-support 
+Link: https://github.com/andrehtissot/cordova-plugin-fcm-image-support
 
 ### Optional standalone Cocoapods CDN source switcher
 
