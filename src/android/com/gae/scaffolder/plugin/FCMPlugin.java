@@ -99,14 +99,13 @@ public class FCMPlugin extends CordovaPlugin {
 
   private void showSettingDialog() {
     AlertDialog.Builder d = new AlertDialog.Builder(cordova.getActivity());
-    d.setTitle("Notification permission is required !")
+    d.setTitle("Please allow the app to send notifications.")
      .setIcon(android.R.drawable.stat_notify_chat)
-     .setPositiveButton("Go to settings", new DialogInterface.OnClickListener() {
+     .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
         @Override
         public void onClick(DialogInterface dialogInterface, int i) {
-          Intent intent = new Intent(ACTION_APPLICATION_DETAILS_SETTINGS);
-          intent.setData(Uri.parse("package:" + getContext().getPackageName().toString()));
-          cordova.getActivity().startActivity(intent);
+          if (requestPermissionLauncher != null)
+            requestPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS);
         }
       });
     d.create().show();
